@@ -1,0 +1,1718 @@
+================================================================================
+              TOPS TECHNOLOGIES - MODULE 6: CORE JAVA
+                    COMPLETE THEORY + LAB ANSWERS
+================================================================================
+
+
+================================================================================
+    TOPIC 1: INTRODUCTION TO JAVA
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+HISTORY OF JAVA:
+  -> Java was developed by James Gosling at Sun Microsystems in 1991.
+  -> Originally called "Oak", renamed to "Java" in 1995.
+  -> Sun Microsystems released Java 1.0 publicly in 1996.
+  -> Oracle Corporation acquired Sun Microsystems in 2010.
+  -> Java follows the philosophy: "Write Once, Run Anywhere" (WORA).
+
+FEATURES OF JAVA:
+  1. Platform Independent : Compiled to bytecode, runs on any OS via JVM.
+  2. Object-Oriented      : Everything is modeled as objects and classes.
+  3. Simple               : Syntax similar to C/C++ but no pointers.
+  4. Secure               : No explicit pointer, bytecode verification.
+  5. Robust               : Strong memory management, exception handling.
+  6. Multithreaded        : Built-in support for concurrent execution.
+  7. Distributed          : Supports networking via java.net package.
+  8. High Performance     : JIT (Just-In-Time) compiler improves speed.
+  9. Dynamic              : Loads classes at runtime as needed.
+
+JVM, JRE, JDK:
+  +--------+------------------------------+----------------------------------+
+  | Term   | Full Form                    | Purpose                          |
+  +--------+------------------------------+----------------------------------+
+  | JVM    | Java Virtual Machine         | Executes Java bytecode           |
+  | JRE    | Java Runtime Environment     | JVM + libraries to run programs  |
+  | JDK    | Java Development Kit         | JRE + compiler + dev tools       |
+  +--------+------------------------------+----------------------------------+
+
+  Flow: Java Source (.java) --> javac compiler --> Bytecode (.class) --> JVM
+
+JAVA PROGRAM STRUCTURE:
+  package com.example;          // Package declaration
+
+  import java.util.Scanner;     // Import statement
+
+  public class HelloWorld {     // Class declaration
+      public static void main(String[] args) {   // Main method
+          System.out.println("Hello, World!");   // Statement
+      }
+  }
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 1: Hello World Program
+--------------------------------------------------------------------------------
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+        System.out.println("Welcome to Java Programming!");
+    }
+}
+
+/*
+  HOW TO COMPILE AND RUN:
+  Step 1: Open Command Prompt / Terminal
+  Step 2: Navigate to file location: cd C:\JavaPrograms
+  Step 3: Compile:  javac HelloWorld.java
+  Step 4: Run:      java HelloWorld
+
+  OUTPUT:
+  Hello, World!
+  Welcome to Java Programming!
+*/
+
+
+================================================================================
+    TOPIC 2: DATA TYPES, VARIABLES, AND OPERATORS
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+PRIMITIVE DATA TYPES:
+  +-----------+-------+--------+-------------------------------------------+
+  | Type      | Size  | Range  | Example                                   |
+  +-----------+-------+--------+-------------------------------------------+
+  | byte      | 1 byte| -128 to 127          | byte b = 10;              |
+  | short     | 2 byte| -32768 to 32767      | short s = 200;            |
+  | int       | 4 byte| -2^31 to 2^31-1      | int age = 25;             |
+  | long      | 8 byte| -2^63 to 2^63-1      | long pop = 1000000000L;   |
+  | float     | 4 byte| 6-7 decimal digits   | float pi = 3.14f;         |
+  | double    | 8 byte| 15 decimal digits    | double d = 3.14159265;    |
+  | char      | 2 byte| 0 to 65535 (Unicode) | char c = 'A';             |
+  | boolean   | 1 bit | true / false         | boolean flag = true;      |
+  +-----------+-------+--------+-------------------------------------------+
+
+OPERATORS:
+  Arithmetic  : +  -  *  /  %
+  Relational  : ==  !=  >  <  >=  <=
+  Logical     : &&  ||  !
+  Assignment  : =  +=  -=  *=  /=  %=
+  Unary       : ++  --  +  -  !
+  Bitwise     : &  |  ^  ~  <<  >>
+
+TYPE CASTING:
+  -> Implicit (Widening): int --> long --> float --> double (automatic)
+  -> Explicit (Narrowing): double --> int (manual, may lose data)
+     int x = (int) 3.99;   // x = 3 (decimal lost)
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 2a: Demonstrate Data Types
+--------------------------------------------------------------------------------
+
+public class DataTypesDemo {
+    public static void main(String[] args) {
+        byte   b = 100;
+        short  s = 30000;
+        int    i = 100000;
+        long   l = 9999999999L;
+        float  f = 3.14f;
+        double d = 3.14159265358979;
+        char   c = 'J';
+        boolean flag = true;
+
+        System.out.println("byte    : " + b);
+        System.out.println("short   : " + s);
+        System.out.println("int     : " + i);
+        System.out.println("long    : " + l);
+        System.out.println("float   : " + f);
+        System.out.println("double  : " + d);
+        System.out.println("char    : " + c);
+        System.out.println("boolean : " + flag);
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 2b: Calculator
+--------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class Calculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter first number  : "); double a = sc.nextDouble();
+        System.out.print("Enter second number : "); double b = sc.nextDouble();
+
+        System.out.println("Addition       : " + (a + b));
+        System.out.println("Subtraction    : " + (a - b));
+        System.out.println("Multiplication : " + (a * b));
+        System.out.println("Division       : " + (b != 0 ? a / b : "Cannot divide by zero"));
+        System.out.println("Modulus        : " + (a % b));
+        System.out.println("a > b          : " + (a > b));
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 2c: Type Casting
+--------------------------------------------------------------------------------
+
+public class TypeCasting {
+    public static void main(String[] args) {
+        // Implicit (Widening)
+        int    i = 150;
+        double d = i;           // int automatically becomes double
+        System.out.println("Implicit (int to double): " + d);
+
+        // Explicit (Narrowing)
+        double pi  = 3.99999;
+        int    pi2 = (int) pi;  // decimal part is truncated
+        System.out.println("Explicit (double to int): " + pi2);
+
+        // char to int
+        char ch  = 'A';
+        int  num = ch;          // gives ASCII value
+        System.out.println("char 'A' to int: " + num);
+    }
+}
+
+
+================================================================================
+    TOPIC 3: CONTROL FLOW STATEMENTS
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  if-else      : Execute block based on condition
+  switch-case  : Multi-way branching based on a value
+  for loop     : Known number of iterations
+  while loop   : Repeat while condition is true
+  do-while     : Execute at least once, then check condition
+  break        : Exit the loop/switch immediately
+  continue     : Skip current iteration and go to next
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 3a: Even or Odd
+--------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class EvenOdd {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int n = sc.nextInt();
+
+        if (n % 2 == 0) {
+            System.out.println(n + " is EVEN");
+        } else {
+            System.out.println(n + " is ODD");
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 3b: Menu-Driven Program (Switch-Case)
+--------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class MenuProgram {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n===== MENU =====");
+            System.out.println("1. Greet User");
+            System.out.println("2. Show Date");
+            System.out.println("3. Calculator");
+            System.out.println("4. Exit");
+            System.out.print("Enter choice: ");
+            choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Hello! Welcome to Java.");
+                    break;
+                case 2:
+                    System.out.println("Today: " + new java.util.Date());
+                    break;
+                case 3:
+                    System.out.print("Enter two numbers: ");
+                    double a = sc.nextDouble(), b = sc.nextDouble();
+                    System.out.println("Sum = " + (a + b));
+                    break;
+                case 4:
+                    System.out.println("Goodbye!");
+                    break;
+                default:
+                    System.out.println("Invalid choice!");
+            }
+        } while (choice != 4);
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 3c: Fibonacci Series
+--------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class Fibonacci {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("How many terms? ");
+        int n = sc.nextInt();
+
+        int a = 0, b = 1;
+        System.out.print("Fibonacci Series: ");
+
+        for (int i = 1; i <= n; i++) {
+            System.out.print(a + " ");
+            int next = a + b;
+            a = b;
+            b = next;
+        }
+        System.out.println();
+    }
+}
+// Output for n=8: 0 1 1 2 3 5 8 13
+
+
+================================================================================
+    TOPIC 4: CLASSES AND OBJECTS
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Class  : Blueprint/template that defines attributes and behaviors.
+  Object : An instance of a class (actual entity in memory).
+
+  Syntax:
+    class ClassName {
+        // attributes (fields)
+        // constructors
+        // methods
+    }
+
+  Constructor : Special method called when object is created.
+                Same name as class, no return type.
+
+  this Keyword: Refers to the current object instance.
+                Used to differentiate instance variables from parameters.
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 4a: Student Class
+--------------------------------------------------------------------------------
+
+public class Student {
+    String name;
+    int    age;
+
+    // Constructor
+    Student(String name, int age) {
+        this.name = name;
+        this.age  = age;
+    }
+
+    void displayDetails() {
+        System.out.println("Name : " + name);
+        System.out.println("Age  : " + age);
+    }
+
+    public static void main(String[] args) {
+        Student s1 = new Student("Aarav", 20);
+        Student s2 = new Student("Priya", 22);
+
+        s1.displayDetails();
+        System.out.println("---");
+        s2.displayDetails();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 4b: Constructor Overloading
+--------------------------------------------------------------------------------
+
+public class Box {
+    double length, width, height;
+
+    // Default constructor
+    Box() {
+        length = width = height = 1.0;
+    }
+
+    // Parameterized constructor
+    Box(double l, double w, double h) {
+        this.length = l;
+        this.width  = w;
+        this.height = h;
+    }
+
+    // Single value constructor (cube)
+    Box(double side) {
+        this.length = this.width = this.height = side;
+    }
+
+    double volume() { return length * width * height; }
+
+    public static void main(String[] args) {
+        Box b1 = new Box();
+        Box b2 = new Box(3.0, 4.0, 5.0);
+        Box b3 = new Box(2.5);
+
+        System.out.println("Box1 Volume: " + b1.volume());
+        System.out.println("Box2 Volume: " + b2.volume());
+        System.out.println("Box3 Volume: " + b3.volume());
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 4c: Getters and Setters (Encapsulation)
+--------------------------------------------------------------------------------
+
+public class Person {
+    private String name;
+    private int    age;
+
+    public String getName()    { return name; }
+    public void   setName(String name) {
+        if (name != null && !name.isEmpty()) this.name = name;
+    }
+
+    public int  getAge()  { return age; }
+    public void setAge(int age) {
+        if (age > 0 && age < 120) this.age = age;
+    }
+
+    public static void main(String[] args) {
+        Person p = new Person();
+        p.setName("Karan");
+        p.setAge(25);
+        System.out.println("Name: " + p.getName());
+        System.out.println("Age : " + p.getAge());
+    }
+}
+
+
+================================================================================
+    TOPIC 5: METHODS IN JAVA
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Method syntax:
+    returnType methodName(parameters) { body }
+
+  Method Overloading: Same method name, different parameter list.
+  Static Method     : Belongs to class, not object. Called via ClassName.method().
+  Static Variable   : Shared across all objects of the class.
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 5a: Maximum of Three Numbers
+--------------------------------------------------------------------------------
+
+public class MaxNumber {
+    static int findMax(int a, int b, int c) {
+        return Math.max(a, Math.max(b, c));
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Max of 10,25,17 = " + findMax(10, 25, 17));
+        System.out.println("Max of 5,5,3    = " + findMax(5, 5, 3));
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 5b: Method Overloading
+--------------------------------------------------------------------------------
+
+public class OverloadDemo {
+    static int    add(int a,    int b)       { return a + b; }
+    static double add(double a, double b)    { return a + b; }
+    static String add(String a, String b)    { return a + b; }
+    static int    add(int a, int b, int c)   { return a + b + c; }
+
+    public static void main(String[] args) {
+        System.out.println(add(5, 10));
+        System.out.println(add(2.5, 3.7));
+        System.out.println(add("Hello, ", "Java!"));
+        System.out.println(add(1, 2, 3));
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 5c: Static Variables and Methods
+--------------------------------------------------------------------------------
+
+public class Counter {
+    static int count = 0;  // shared across all objects
+
+    Counter() { count++; }
+
+    static void showCount() {
+        System.out.println("Total objects created: " + count);
+    }
+
+    public static void main(String[] args) {
+        Counter c1 = new Counter();
+        Counter c2 = new Counter();
+        Counter c3 = new Counter();
+        Counter.showCount();  // Output: Total objects created: 3
+    }
+}
+
+
+================================================================================
+    TOPIC 6: OBJECT-ORIENTED PROGRAMMING (OOPs) CONCEPTS
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  4 PILLARS OF OOP:
+  1. Encapsulation   : Binding data and methods together; hide internal state.
+  2. Inheritance     : Child class acquires properties of parent class.
+  3. Polymorphism    : One interface, multiple implementations.
+  4. Abstraction     : Hide implementation, show only essential features.
+
+  INHERITANCE TYPES:
+  -> Single       : A extends B
+  -> Multilevel   : A extends B, B extends C
+  -> Hierarchical : B extends A, C extends A
+
+  Method Overriding: Child class redefines parent's method (same signature).
+  Dynamic Method Dispatch: JVM decides which overridden method to call at runtime.
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 6a: Single Inheritance
+--------------------------------------------------------------------------------
+
+class Animal {
+    String name;
+    void eat() { System.out.println(name + " is eating."); }
+}
+
+class Dog extends Animal {
+    void bark() { System.out.println(name + " is barking."); }
+}
+
+public class SingleInheritance {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.name = "Bruno";
+        d.eat();    // inherited from Animal
+        d.bark();   // own method
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 6b: Multilevel Inheritance
+--------------------------------------------------------------------------------
+
+class Vehicle {
+    void start() { System.out.println("Vehicle started."); }
+}
+
+class Car extends Vehicle {
+    void drive() { System.out.println("Car is driving."); }
+}
+
+class ElectricCar extends Car {
+    void charge() { System.out.println("Electric car is charging."); }
+}
+
+public class MultilevelInheritance {
+    public static void main(String[] args) {
+        ElectricCar ec = new ElectricCar();
+        ec.start();   // from Vehicle
+        ec.drive();   // from Car
+        ec.charge();  // own method
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 6c: Method Overriding (Polymorphism)
+--------------------------------------------------------------------------------
+
+class Shape {
+    void area() { System.out.println("Calculating area of shape."); }
+}
+
+class Circle extends Shape {
+    double radius;
+    Circle(double r) { this.radius = r; }
+
+    @Override
+    void area() {
+        System.out.println("Circle Area = " + (3.14 * radius * radius));
+    }
+}
+
+class Rectangle extends Shape {
+    double l, w;
+    Rectangle(double l, double w) { this.l = l; this.w = w; }
+
+    @Override
+    void area() {
+        System.out.println("Rectangle Area = " + (l * w));
+    }
+}
+
+public class MethodOverriding {
+    public static void main(String[] args) {
+        Shape s;
+
+        s = new Circle(5.0);
+        s.area();      // calls Circle's area()
+
+        s = new Rectangle(4.0, 6.0);
+        s.area();      // calls Rectangle's area()
+    }
+}
+
+
+================================================================================
+    TOPIC 7: CONSTRUCTORS AND GARBAGE COLLECTION
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Default Constructor      : No parameters; provided by Java if none defined.
+  Parameterized Constructor: Takes arguments to initialize fields.
+  Copy Constructor         : Creates new object from existing object (emulated in Java).
+  Constructor Overloading  : Multiple constructors with different parameter lists.
+
+  OBJECT LIFE CYCLE:
+  1. Object Created  --> memory allocated (new keyword)
+  2. Object Used     --> methods called, data accessed
+  3. Object Unreferenced --> no variable points to it
+  4. Garbage Collected --> JVM's GC reclaims memory (automatic)
+
+  -> Java does NOT have destructors like C++.
+  -> finalize() method (deprecated) was called before GC (avoid using it).
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 7a: Parameterized Constructor
+--------------------------------------------------------------------------------
+
+public class Employee {
+    String name;
+    int    empId;
+    double salary;
+
+    // Parameterized constructor
+    Employee(String name, int empId, double salary) {
+        this.name   = name;
+        this.empId  = empId;
+        this.salary = salary;
+    }
+
+    void display() {
+        System.out.println("ID: " + empId + " | Name: " + name + " | Salary: " + salary);
+    }
+
+    public static void main(String[] args) {
+        Employee e1 = new Employee("Aarav", 101, 55000.0);
+        Employee e2 = new Employee("Priya", 102, 62000.0);
+        e1.display();
+        e2.display();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 7b: Constructor Overloading
+--------------------------------------------------------------------------------
+
+public class Book {
+    String title, author;
+    double price;
+
+    Book()                                  { title = "Unknown"; author = "Unknown"; price = 0; }
+    Book(String title)                      { this.title = title; author = "Unknown"; price = 0; }
+    Book(String title, String author)       { this.title = title; this.author = author; price = 0; }
+    Book(String title, String author, double price) {
+        this.title = title; this.author = author; this.price = price;
+    }
+
+    void display() {
+        System.out.println(title + " by " + author + " - Rs." + price);
+    }
+
+    public static void main(String[] args) {
+        new Book().display();
+        new Book("Java Guide").display();
+        new Book("Java Guide", "James").display();
+        new Book("Java Guide", "James", 499.0).display();
+    }
+}
+
+
+================================================================================
+    TOPIC 8: ARRAYS AND STRINGS
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  1D Array    : int[] arr = new int[5];
+  2D Array    : int[][] matrix = new int[3][3];
+  String      : Immutable sequence of characters (java.lang.String)
+  StringBuffer: Mutable, thread-safe (synchronized)
+  StringBuilder: Mutable, NOT thread-safe (faster)
+
+  COMMON STRING METHODS:
+  -> length()            : returns length
+  -> charAt(i)           : char at index i
+  -> substring(s, e)     : substring from s to e
+  -> toLowerCase()       : all lowercase
+  -> toUpperCase()       : all uppercase
+  -> equals(str)         : content comparison
+  -> compareTo(str)      : lexicographic comparison
+  -> indexOf(str)        : first occurrence position
+  -> replace(old, new)   : replace characters
+  -> trim()              : remove leading/trailing spaces
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 8a: Matrix Addition and Subtraction
+--------------------------------------------------------------------------------
+
+public class MatrixOperations {
+    public static void main(String[] args) {
+        int[][] A = {{1,2,3},{4,5,6},{7,8,9}};
+        int[][] B = {{9,8,7},{6,5,4},{3,2,1}};
+        int     n = 3;
+        int[][] sum  = new int[n][n];
+        int[][] diff = new int[n][n];
+
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++) {
+                sum[i][j]  = A[i][j] + B[i][j];
+                diff[i][j] = A[i][j] - B[i][j];
+            }
+
+        System.out.println("Sum Matrix:");
+        for (int[] row : sum)  { for (int x : row) System.out.printf("%4d", x); System.out.println(); }
+
+        System.out.println("Difference Matrix:");
+        for (int[] row : diff) { for (int x : row) System.out.printf("%4d", x); System.out.println(); }
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 8b: Reverse String and Palindrome Check
+--------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class StringReverse {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a string: ");
+        String str = sc.next();
+
+        String reversed = new StringBuilder(str).reverse().toString();
+        System.out.println("Reversed   : " + reversed);
+
+        if (str.equalsIgnoreCase(reversed))
+            System.out.println(str + " is a PALINDROME");
+        else
+            System.out.println(str + " is NOT a palindrome");
+    }
+}
+// "madam" reversed = "madam" --> PALINDROME
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 8c: String Comparison
+--------------------------------------------------------------------------------
+
+public class StringComparison {
+    public static void main(String[] args) {
+        String s1 = "Java";
+        String s2 = "Java";
+        String s3 = new String("Java");
+        String s4 = "Python";
+
+        System.out.println("s1 == s2      : " + (s1 == s2));         // true (same pool)
+        System.out.println("s1 == s3      : " + (s1 == s3));         // false (different object)
+        System.out.println("s1.equals(s3) : " + s1.equals(s3));      // true (same content)
+        System.out.println("s1.compareTo(s4) : " + s1.compareTo(s4));// negative (J < P)
+    }
+}
+
+
+================================================================================
+    TOPIC 9: INHERITANCE AND POLYMORPHISM
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Super Keyword:
+  -> super.method()      : call parent class method
+  -> super(params)       : call parent class constructor
+  -> super.variable      : access parent class variable
+
+  Method Hiding    : Static method in child with same signature as parent.
+  Dynamic Binding  : At runtime, JVM decides which overridden method to call.
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 9a: Inheritance using extends
+--------------------------------------------------------------------------------
+
+class BankAccount {
+    String owner;
+    double balance;
+
+    BankAccount(String owner, double balance) {
+        this.owner   = owner;
+        this.balance = balance;
+    }
+
+    void deposit(double amount)  { balance += amount; }
+    void showBalance() { System.out.println(owner + " Balance: Rs." + balance); }
+}
+
+class SavingsAccount extends BankAccount {
+    double interestRate;
+
+    SavingsAccount(String owner, double balance, double rate) {
+        super(owner, balance);
+        this.interestRate = rate;
+    }
+
+    void addInterest() {
+        balance += balance * interestRate / 100;
+        System.out.println("Interest added at " + interestRate + "%");
+    }
+}
+
+public class InheritanceDemo {
+    public static void main(String[] args) {
+        SavingsAccount sa = new SavingsAccount("Aarav", 10000, 5.0);
+        sa.deposit(2000);
+        sa.addInterest();
+        sa.showBalance();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 9b: Runtime Polymorphism
+--------------------------------------------------------------------------------
+
+class Notification {
+    void send() { System.out.println("Sending generic notification..."); }
+}
+
+class EmailNotification extends Notification {
+    @Override
+    void send() { System.out.println("Sending EMAIL notification."); }
+}
+
+class SMSNotification extends Notification {
+    @Override
+    void send() { System.out.println("Sending SMS notification."); }
+}
+
+public class RuntimePolymorphism {
+    public static void main(String[] args) {
+        Notification n;
+
+        n = new EmailNotification(); n.send();
+        n = new SMSNotification();   n.send();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 9c: Super Keyword
+--------------------------------------------------------------------------------
+
+class Parent {
+    String msg = "Hello from Parent";
+    void greet() { System.out.println("Parent greet()"); }
+}
+
+class Child extends Parent {
+    String msg = "Hello from Child";
+
+    Child() { super(); }  // calls Parent constructor
+
+    void greet() {
+        super.greet();    // call parent method
+        System.out.println("Child greet()");
+    }
+
+    void showMsg() {
+        System.out.println(super.msg);  // access parent variable
+        System.out.println(msg);        // child variable
+    }
+}
+
+public class SuperDemo {
+    public static void main(String[] args) {
+        Child c = new Child();
+        c.greet();
+        c.showMsg();
+    }
+}
+
+
+================================================================================
+    TOPIC 10: INTERFACES AND ABSTRACT CLASSES
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Abstract Class:
+  -> Cannot be instantiated directly.
+  -> Can have abstract methods (no body) and concrete methods (with body).
+  -> Use when classes share common behavior but need specific implementations.
+
+  Interface:
+  -> 100% abstract (before Java 8); all methods public and abstract by default.
+  -> A class can implement MULTIPLE interfaces (multiple inheritance in Java).
+  -> Use keyword: implements
+
+  DIFFERENCE:
+  +------------------+----------------------+----------------------+
+  | Feature          | Abstract Class       | Interface            |
+  +------------------+----------------------+----------------------+
+  | Methods          | Abstract + Concrete  | Abstract (default)   |
+  | Variables        | Any type             | public static final  |
+  | Multiple inherit | No                   | Yes                  |
+  | Constructor      | Yes                  | No                   |
+  | Keyword          | extends              | implements           |
+  +------------------+----------------------+----------------------+
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 10a: Abstract Class
+--------------------------------------------------------------------------------
+
+abstract class Shape {
+    abstract double area();       // abstract method -- no body
+    abstract double perimeter();
+
+    void display() {              // concrete method
+        System.out.println("Area      = " + area());
+        System.out.println("Perimeter = " + perimeter());
+    }
+}
+
+class Circle extends Shape {
+    double r;
+    Circle(double r) { this.r = r; }
+
+    @Override double area()      { return 3.14 * r * r; }
+    @Override double perimeter() { return 2 * 3.14 * r; }
+}
+
+class Rectangle extends Shape {
+    double l, w;
+    Rectangle(double l, double w) { this.l = l; this.w = w; }
+
+    @Override double area()      { return l * w; }
+    @Override double perimeter() { return 2 * (l + w); }
+}
+
+public class AbstractDemo {
+    public static void main(String[] args) {
+        Shape s1 = new Circle(7);
+        Shape s2 = new Rectangle(4, 6);
+        System.out.println("--- Circle ---");    s1.display();
+        System.out.println("--- Rectangle ---"); s2.display();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 10b: Multiple Interfaces
+--------------------------------------------------------------------------------
+
+interface Printable  { void print(); }
+interface Showable   { void show();  }
+
+class Document implements Printable, Showable {
+    String content;
+    Document(String content) { this.content = content; }
+
+    @Override public void print() { System.out.println("Printing : " + content); }
+    @Override public void show()  { System.out.println("Showing  : " + content); }
+}
+
+public class MultipleInterfaceDemo {
+    public static void main(String[] args) {
+        Document doc = new Document("Java Notes");
+        doc.print();
+        doc.show();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 10c: Interface - Payment Gateway
+--------------------------------------------------------------------------------
+
+interface PaymentGateway {
+    void processPayment(double amount);
+    void refund(double amount);
+    String getPaymentMode();
+}
+
+class UPIPayment implements PaymentGateway {
+    @Override public void processPayment(double amount) {
+        System.out.println("UPI: Rs." + amount + " paid successfully.");
+    }
+    @Override public void refund(double amount) {
+        System.out.println("UPI: Rs." + amount + " refunded.");
+    }
+    @Override public String getPaymentMode() { return "UPI"; }
+}
+
+class CreditCardPayment implements PaymentGateway {
+    @Override public void processPayment(double amount) {
+        System.out.println("Credit Card: Rs." + amount + " charged.");
+    }
+    @Override public void refund(double amount) {
+        System.out.println("Credit Card: Rs." + amount + " refund initiated.");
+    }
+    @Override public String getPaymentMode() { return "Credit Card"; }
+}
+
+public class PaymentDemo {
+    public static void main(String[] args) {
+        PaymentGateway pg;
+
+        pg = new UPIPayment();
+        System.out.println("Mode: " + pg.getPaymentMode());
+        pg.processPayment(1500.00);
+        pg.refund(500.00);
+
+        System.out.println();
+
+        pg = new CreditCardPayment();
+        System.out.println("Mode: " + pg.getPaymentMode());
+        pg.processPayment(3000.00);
+    }
+}
+
+
+================================================================================
+    TOPIC 11: PACKAGES AND ACCESS MODIFIERS
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  PACKAGES:
+  -> A namespace that organizes related classes and interfaces.
+  -> Built-in : java.lang, java.util, java.io, java.net
+  -> User-defined: package com.myapp.utils;
+
+  ACCESS MODIFIERS:
+  +-----------+-------+--------+-----------+--------+
+  | Modifier  | Class | Package| Subclass  | World  |
+  +-----------+-------+--------+-----------+--------+
+  | private   |  Yes  |   No   |    No     |   No   |
+  | default   |  Yes  |   Yes  |    No     |   No   |
+  | protected |  Yes  |   Yes  |    Yes    |   No   |
+  | public    |  Yes  |   Yes  |    Yes    |   Yes  |
+  +-----------+-------+--------+-----------+--------+
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 11a: User-Defined Package
+--------------------------------------------------------------------------------
+
+// File: com/myapp/MathUtils.java
+package com.myapp;
+
+public class MathUtils {
+    public static int square(int n)  { return n * n; }
+    public static int cube(int n)    { return n * n * n; }
+}
+
+// File: Main.java (import and use the package)
+import com.myapp.MathUtils;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Square of 5 = " + MathUtils.square(5));
+        System.out.println("Cube of 3   = " + MathUtils.cube(3));
+    }
+}
+
+// COMPILE:
+//   javac com/myapp/MathUtils.java
+//   javac Main.java
+//   java Main
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 11b: Access Modifiers Demo
+--------------------------------------------------------------------------------
+
+class AccessDemo {
+    private   int privateVar   = 1;
+              int defaultVar   = 2;
+    protected int protectedVar = 3;
+    public    int publicVar    = 4;
+
+    private void privateMethod()   { System.out.println("Private method"); }
+    public  void publicMethod()    {
+        System.out.println("Accessing private inside same class: " + privateVar);
+        privateMethod();
+    }
+}
+
+public class AccessTest {
+    public static void main(String[] args) {
+        AccessDemo obj = new AccessDemo();
+        // obj.privateVar  -- ERROR: not accessible outside class
+        System.out.println("Default   : " + obj.defaultVar);
+        System.out.println("Protected : " + obj.protectedVar);
+        System.out.println("Public    : " + obj.publicVar);
+        obj.publicMethod();
+    }
+}
+
+
+================================================================================
+    TOPIC 12: EXCEPTION HANDLING
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Exception: An event that disrupts the normal flow of execution.
+
+  TYPES:
+  -> Checked   : Must be handled or declared (IOException, SQLException)
+  -> Unchecked : Runtime exceptions (ArithmeticException, NullPointerException)
+
+  KEYWORDS:
+  -> try     : Block of code that may throw exception
+  -> catch   : Handles the exception
+  -> finally : Always executes (cleanup code)
+  -> throw   : Explicitly throw an exception
+  -> throws  : Declares that method may throw exception
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 12a: try-catch-finally
+--------------------------------------------------------------------------------
+
+public class ExceptionDemo {
+    public static void main(String[] args) {
+        try {
+            int[] arr = new int[5];
+            arr[10] = 100;           // ArrayIndexOutOfBoundsException
+            int result = 10 / 0;     // ArithmeticException (unreachable here)
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Error: Array index out of bounds! " + e.getMessage());
+        }
+        catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero!");
+        }
+        finally {
+            System.out.println("Finally block: always executed.");
+        }
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 12b: Multiple Catch Blocks
+--------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class MultipleCatch {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.print("Enter numerator   : "); int a = sc.nextInt();
+            System.out.print("Enter denominator : "); int b = sc.nextInt();
+            int result = a / b;
+            System.out.println("Result = " + result);
+
+            String s = null;
+            System.out.println(s.length());  // NullPointerException
+        }
+        catch (ArithmeticException e)    { System.out.println("Arithmetic Error: " + e); }
+        catch (NullPointerException e)   { System.out.println("Null Pointer Error!"); }
+        catch (Exception e)              { System.out.println("General Error: " + e); }
+        finally                          { System.out.println("Program ended safely."); }
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 12c: Custom Exception
+--------------------------------------------------------------------------------
+
+// Custom exception class
+class InsufficientFundsException extends Exception {
+    double amount;
+    InsufficientFundsException(double amount) {
+        super("Insufficient funds! Short by Rs." + amount);
+        this.amount = amount;
+    }
+}
+
+class BankAccount {
+    double balance;
+    BankAccount(double balance) { this.balance = balance; }
+
+    void withdraw(double amount) throws InsufficientFundsException {
+        if (amount > balance) {
+            throw new InsufficientFundsException(amount - balance);
+        }
+        balance -= amount;
+        System.out.println("Withdrawn Rs." + amount + " | Balance: Rs." + balance);
+    }
+}
+
+public class CustomExceptionDemo {
+    public static void main(String[] args) {
+        BankAccount acc = new BankAccount(5000);
+        try {
+            acc.withdraw(3000);   // success
+            acc.withdraw(4000);   // fails: InsufficientFundsException
+        }
+        catch (InsufficientFundsException e) {
+            System.out.println("Exception: " + e.getMessage());
+        }
+    }
+}
+
+
+================================================================================
+    TOPIC 13: MULTITHREADING
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Thread     : A lightweight sub-process; smallest unit of execution.
+  Multithreading: Running multiple threads simultaneously.
+
+  WAYS TO CREATE THREADS:
+  1. Extend Thread class     -> override run()
+  2. Implement Runnable      -> implement run(), pass to Thread()
+
+  THREAD LIFE CYCLE:
+  New --> Runnable --> Running --> Waiting/Blocked --> Terminated
+
+  SYNCHRONIZATION:
+  -> Prevents multiple threads from accessing shared resource simultaneously.
+  -> Use synchronized keyword on method or block.
+
+  INTER-THREAD COMMUNICATION:
+  -> wait()      : releases lock, thread waits
+  -> notify()    : wakes up one waiting thread
+  -> notifyAll() : wakes up all waiting threads
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 13a: Creating Threads
+--------------------------------------------------------------------------------
+
+// Method 1: Extending Thread class
+class MyThread extends Thread {
+    String name;
+    MyThread(String name) { this.name = name; }
+
+    @Override
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println(name + " - Count: " + i);
+            try { Thread.sleep(500); } catch (InterruptedException e) {}
+        }
+    }
+}
+
+// Method 2: Implementing Runnable interface
+class MyRunnable implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println("Runnable Thread - " + i);
+        }
+    }
+}
+
+public class ThreadDemo {
+    public static void main(String[] args) {
+        MyThread t1 = new MyThread("Thread-A");
+        MyThread t2 = new MyThread("Thread-B");
+        Thread   t3 = new Thread(new MyRunnable());
+
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 13b: Thread Synchronization
+--------------------------------------------------------------------------------
+
+class Counter {
+    int count = 0;
+
+    synchronized void increment() {  // only one thread at a time
+        count++;
+    }
+}
+
+public class SyncDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Counter c = new Counter();
+
+        Thread t1 = new Thread(() -> { for(int i=0;i<1000;i++) c.increment(); });
+        Thread t2 = new Thread(() -> { for(int i=0;i<1000;i++) c.increment(); });
+
+        t1.start(); t2.start();
+        t1.join();  t2.join();  // wait for both to finish
+
+        System.out.println("Final Count: " + c.count);  // should be 2000
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 13c: Inter-Thread Communication (wait/notify)
+--------------------------------------------------------------------------------
+
+class SharedResource {
+    int data;
+    boolean available = false;
+
+    synchronized void produce(int value) throws InterruptedException {
+        while (available) wait();  // wait if already produced
+        data = value;
+        available = true;
+        System.out.println("Produced: " + data);
+        notify();
+    }
+
+    synchronized void consume() throws InterruptedException {
+        while (!available) wait();  // wait if nothing produced yet
+        System.out.println("Consumed: " + data);
+        available = false;
+        notify();
+    }
+}
+
+public class WaitNotifyDemo {
+    public static void main(String[] args) {
+        SharedResource res = new SharedResource();
+
+        Thread producer = new Thread(() -> {
+            try { for(int i=1;i<=5;i++) res.produce(i); }
+            catch (InterruptedException e) {}
+        });
+
+        Thread consumer = new Thread(() -> {
+            try { for(int i=1;i<=5;i++) res.consume(); }
+            catch (InterruptedException e) {}
+        });
+
+        producer.start();
+        consumer.start();
+    }
+}
+
+
+================================================================================
+    TOPIC 14: FILE HANDLING
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  java.io Package provides classes for File I/O.
+
+  +-----------------+---------------------------+
+  | Class           | Purpose                   |
+  +-----------------+---------------------------+
+  | FileWriter      | Write characters to file  |
+  | FileReader      | Read characters from file |
+  | BufferedWriter  | Efficient writing          |
+  | BufferedReader  | Efficient line-by-line     |
+  | FileOutputStream| Write bytes to file       |
+  | FileInputStream | Read bytes from file      |
+  +-----------------+---------------------------+
+
+  Serialization    : Convert object to byte stream (save to file).
+  Deserialization  : Convert byte stream back to object.
+  Implements Serializable interface for serialization.
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 14a: FileReader and FileWriter
+--------------------------------------------------------------------------------
+
+import java.io.*;
+
+public class FileReadWrite {
+    public static void main(String[] args) {
+        String filename = "notes.txt";
+
+        // WRITE to file
+        try (FileWriter fw = new FileWriter(filename)) {
+            fw.write("Hello from Java File Handling!\n");
+            fw.write("This is line 2.\n");
+            System.out.println("File written successfully.");
+        } catch (IOException e) { e.printStackTrace(); }
+
+        // READ from file
+        try (FileReader fr = new FileReader(filename)) {
+            int ch;
+            System.out.println("File contents:");
+            while ((ch = fr.read()) != -1) {
+                System.out.print((char) ch);
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 14b: BufferedReader - Read Line by Line
+--------------------------------------------------------------------------------
+
+import java.io.*;
+
+public class BufferedReaderDemo {
+    public static void main(String[] args) {
+        // Write first
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("data.txt"))) {
+            bw.write("Line 1: Java is powerful.");
+            bw.newLine();
+            bw.write("Line 2: File handling is easy.");
+            bw.newLine();
+            bw.write("Line 3: BufferedReader is efficient.");
+        } catch (IOException e) { e.printStackTrace(); }
+
+        // Read line by line
+        try (BufferedReader br = new BufferedReader(new FileReader("data.txt"))) {
+            String line;
+            int lineNo = 1;
+            System.out.println("Reading file line by line:");
+            while ((line = br.readLine()) != null) {
+                System.out.println(lineNo++ + ": " + line);
+            }
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 14c: Serialization and Deserialization
+--------------------------------------------------------------------------------
+
+import java.io.*;
+
+class Student implements Serializable {
+    private static final long serialVersionUID = 1L;
+    String name;
+    int    rollNo;
+    double marks;
+
+    Student(String name, int rollNo, double marks) {
+        this.name = name; this.rollNo = rollNo; this.marks = marks;
+    }
+}
+
+public class SerializationDemo {
+    public static void main(String[] args) {
+        Student s = new Student("Aarav", 101, 92.5);
+        String  filename = "student.ser";
+
+        // SERIALIZE (save object to file)
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(s);
+            System.out.println("Object serialized successfully.");
+        } catch (IOException e) { e.printStackTrace(); }
+
+        // DESERIALIZE (load object from file)
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            Student loaded = (Student) ois.readObject();
+            System.out.println("Deserialized Student:");
+            System.out.println("Name   : " + loaded.name);
+            System.out.println("Roll   : " + loaded.rollNo);
+            System.out.println("Marks  : " + loaded.marks);
+        } catch (IOException | ClassNotFoundException e) { e.printStackTrace(); }
+    }
+}
+
+
+================================================================================
+    TOPIC 15: COLLECTIONS FRAMEWORK
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  Java Collections Framework provides ready-made data structures.
+
+  HIERARCHY:
+  Collection (interface)
+    ├── List   : Ordered, allows duplicates  (ArrayList, LinkedList)
+    ├── Set    : No duplicates               (HashSet, TreeSet)
+    └── Queue  : FIFO order                  (LinkedList, PriorityQueue)
+  Map (interface) : Key-Value pairs          (HashMap, TreeMap)
+
+  +-----------+-----------+------------+----------+
+  | Class     | Ordered   | Duplicates | Sorted   |
+  +-----------+-----------+------------+----------+
+  | ArrayList | Yes       | Yes        | No       |
+  | LinkedList| Yes       | Yes        | No       |
+  | HashSet   | No        | No         | No       |
+  | TreeSet   | Yes       | No         | Yes      |
+  | HashMap   | No        | Keys: No   | No       |
+  | TreeMap   | Yes       | Keys: No   | Yes      |
+  +-----------+-----------+------------+----------+
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 15a: ArrayList and LinkedList
+--------------------------------------------------------------------------------
+
+import java.util.*;
+
+public class ListDemo {
+    public static void main(String[] args) {
+        // ArrayList
+        ArrayList<String> al = new ArrayList<>();
+        al.add("Apple"); al.add("Banana"); al.add("Mango"); al.add("Apple");
+        System.out.println("ArrayList : " + al);
+        al.remove("Banana");
+        System.out.println("After remove: " + al);
+
+        // LinkedList
+        LinkedList<Integer> ll = new LinkedList<>();
+        ll.add(10); ll.add(20); ll.addFirst(5); ll.addLast(30);
+        System.out.println("LinkedList: " + ll);
+
+        // Iterator
+        System.out.print("Iterating: ");
+        Iterator<Integer> it = ll.iterator();
+        while (it.hasNext()) System.out.print(it.next() + " ");
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 15b: HashSet - Remove Duplicates
+--------------------------------------------------------------------------------
+
+import java.util.*;
+
+public class HashSetDemo {
+    public static void main(String[] args) {
+        List<Integer> withDuplicates = Arrays.asList(5,3,8,3,1,5,9,1,2);
+        System.out.println("With duplicates    : " + withDuplicates);
+
+        HashSet<Integer> set = new HashSet<>(withDuplicates);
+        System.out.println("Without duplicates : " + set);
+
+        // TreeSet also removes duplicates AND sorts
+        TreeSet<Integer> sorted = new TreeSet<>(withDuplicates);
+        System.out.println("Sorted unique      : " + sorted);
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 15c: HashMap - Store and Retrieve Key-Value Pairs
+--------------------------------------------------------------------------------
+
+import java.util.*;
+
+public class HashMapDemo {
+    public static void main(String[] args) {
+        HashMap<Integer, String> map = new HashMap<>();
+
+        // Store
+        map.put(101, "Aarav");
+        map.put(102, "Priya");
+        map.put(103, "Ravi");
+
+        // Retrieve
+        System.out.println("Student 102 : " + map.get(102));
+
+        // Check existence
+        System.out.println("Contains 103: " + map.containsKey(103));
+
+        // Iterate all entries
+        System.out.println("All Students:");
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println("  ID: " + entry.getKey() + " | Name: " + entry.getValue());
+        }
+
+        // Remove
+        map.remove(101);
+        System.out.println("After removal: " + map);
+    }
+}
+
+
+================================================================================
+    TOPIC 16: JAVA INPUT/OUTPUT (I/O)
+================================================================================
+
+--------------------------------------------------------------------------------
+THEORY
+--------------------------------------------------------------------------------
+
+  STREAMS:
+  -> InputStream  : Reads bytes from source (keyboard, file, network)
+  -> OutputStream : Writes bytes to destination
+
+  STREAM CLASSES:
+  +-----------------------+----------------------------------------+
+  | Class                 | Purpose                                |
+  +-----------------------+----------------------------------------+
+  | System.in             | Standard input (keyboard)              |
+  | System.out            | Standard output (console)              |
+  | FileInputStream       | Read bytes from file                   |
+  | FileOutputStream      | Write bytes to file                    |
+  | Scanner               | Read formatted input (int, string etc) |
+  +-----------------------+----------------------------------------+
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 16a: Read Input Using Scanner
+--------------------------------------------------------------------------------
+
+import java.util.Scanner;
+
+public class ScannerDemo {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter your name  : "); String name  = sc.nextLine();
+        System.out.print("Enter your age   : "); int    age   = sc.nextInt();
+        System.out.print("Enter your marks : "); double marks = sc.nextDouble();
+
+        System.out.println("\n--- Student Info ---");
+        System.out.println("Name  : " + name);
+        System.out.println("Age   : " + age);
+        System.out.println("Marks : " + marks);
+        System.out.println("Grade : " + (marks >= 90 ? "A" : marks >= 75 ? "B" : "C"));
+
+        sc.close();
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 16b: File Copy Using FileInputStream and FileOutputStream
+--------------------------------------------------------------------------------
+
+import java.io.*;
+
+public class FileCopy {
+    public static void main(String[] args) {
+        String src  = "source.txt";
+        String dest = "destination.txt";
+
+        // Create source file first
+        try (FileWriter fw = new FileWriter(src)) {
+            fw.write("This is the source file content.\nLine 2.\nLine 3.");
+        } catch (IOException e) { e.printStackTrace(); }
+
+        // Copy using streams
+        try (FileInputStream  fis = new FileInputStream(src);
+             FileOutputStream fos = new FileOutputStream(dest)) {
+
+            byte[] buffer = new byte[1024];
+            int    bytesRead;
+
+            while ((bytesRead = fis.read(buffer)) != -1) {
+                fos.write(buffer, 0, bytesRead);
+            }
+
+            System.out.println("File copied successfully from " + src + " to " + dest);
+
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+}
+
+--------------------------------------------------------------------------------
+LAB EXERCISE 16c: Read from One File, Write to Another
+--------------------------------------------------------------------------------
+
+import java.io.*;
+
+public class FileTransfer {
+    public static void main(String[] args) {
+        String inputFile  = "input.txt";
+        String outputFile = "output.txt";
+
+        // Create input file
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(inputFile))) {
+            bw.write("Java I/O is simple and powerful.");
+            bw.newLine();
+            bw.write("Streams handle data flow efficiently.");
+            bw.newLine();
+            bw.write("File handling is an essential Java skill.");
+        } catch (IOException e) { e.printStackTrace(); }
+
+        // Read input and write to output (with line numbers)
+        try (BufferedReader br = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter bw = new BufferedWriter(new FileWriter(outputFile))) {
+
+            String line;
+            int    lineNo = 1;
+
+            while ((line = br.readLine()) != null) {
+                String numbered = lineNo++ + ". " + line;
+                bw.write(numbered);
+                bw.newLine();
+                System.out.println("Written: " + numbered);
+            }
+
+            System.out.println("Transfer complete! Check " + outputFile);
+
+        } catch (IOException e) { e.printStackTrace(); }
+    }
+}
+
+
+================================================================================
+                    QUICK REFERENCE SUMMARY
+================================================================================
+
+  Topic 1  : Java = JVM + JRE + JDK | Write Once Run Anywhere
+  Topic 2  : 8 Primitive Types | Operators | Widening vs Narrowing cast
+  Topic 3  : if-else, switch, for, while, do-while, break, continue
+  Topic 4  : Class = Blueprint | Object = Instance | this = current object
+  Topic 5  : Overloading = same name diff params | static = class-level
+  Topic 6  : 4 OOP pillars | Single/Multilevel/Hierarchical inheritance
+  Topic 7  : Default/Parameterized/Copy Constructor | GC automatic in Java
+  Topic 8  : String immutable | StringBuffer thread-safe | StringBuilder fast
+  Topic 9  : super keyword | Dynamic binding at runtime
+  Topic 10 : Abstract = partial implementation | Interface = full contract
+  Topic 11 : Packages = namespaces | 4 Access Modifiers
+  Topic 12 : Checked vs Unchecked | try-catch-finally | Custom exceptions
+  Topic 13 : Thread class / Runnable | synchronized | wait-notify
+  Topic 14 : FileReader/Writer | BufferedReader | Serializable interface
+  Topic 15 : List/Set/Map/Queue | ArrayList/HashSet/HashMap most used
+  Topic 16 : InputStream/OutputStream | Scanner | FileInputStream/OutputStream
+
+
+================================================================================
+           END OF MODULE 6 - CORE JAVA COMPLETE ANSWERS
+        Prepared for: TOPS Technologies | Core Java Module
+================================================================================
